@@ -1,0 +1,393 @@
+{{Redirect|Structured storage|the Microsoft technology also known as structured storage|COM Structured Storage}}
+A '''NoSQL''' (often interpreted as '''N'''ot '''O'''nly '''SQL'''<ref>{{cite web|url=http://searchdatamanagement.techtarget.com/definition/NoSQL-Not-Only-SQL|title=NoSQL (Not Only SQL)|quote=NoSQL database, also called Not Only SQL}}</ref><ref>{{cite web|url=http://martinfowler.com/bliki/NosqlDefinition.html|title=NosqlDefinition|author=[[Martin Fowler]]|quote=many advocates of NoSQL say that it does not mean a "no" to SQL, rather it means Not Only SQL}}</ref>{{Verify credibility|date=November 2014}}) database provides a mechanism for [[Computer data storage|storage]] and [[data retrieval|retrieval]] of data that is modeled in means other than the tabular relations used in [[relational database]]s. Motivations for this approach include simplicity of design, [[Horizontal scaling#Horizontal and vertical scaling|horizontal scaling]] and finer control over availability. The data structures used by NoSQL databases (e.g. key-value, graph, or document) differ from those used in relational databases, making some operations faster in NoSQL and some faster in relational databases. The particular suitability of a given NoSQL database depends on the problem it must solve. 
+
+NoSQL databases are increasingly used in [[big data]] and [[real-time web]] applications.<ref>{{cite web|url= http://db-engines.com/en/blog_post/23 |title= RDBMS dominate the database market, but NoSQL systems are catching up |publisher= DB-Engines.com |date= 21 Nov 2013 |accessdate= 24 Nov 2013 }}</ref>   NoSQL systems are also called "Not only SQL" to emphasize that they may also support [[SQL]]-like query languages. Many NoSQL stores compromise consistency (in the sense of the [[CAP theorem]]) in favor of availability and partition tolerance. Barriers to the greater adoption of NoSQL stores include the use of low-level query languages, the lack of standardized interfaces, and huge investments in existing SQL.<ref>{{cite web
+| url         = http://www.journalofcloudcomputing.com/content/pdf/2192-113X-2-22.pdf
+| title       = Data management in cloud environments: NoSQL and NewSQL data stores
+| author  = K. Grolinger,  W.A. Higashino, A. Tiwari, M.A.M. Capretz
+| year        = 2013
+| publisher   = JoCCASA, Springer
+| accessdate  = 8 Jan 2014
+}}
+</ref>
+Most NoSQL stores lack true [[ACID]] transactions, although a few recent systems, such as FairCom [[c-treeACE]], Google [[Spanner (database)|Spanner]] (though technically a [[NewSQL]] database) and [[FoundationDB]], have made them central to their designs. 
+
+== History ==
+Carlo Strozzi used the term ''NoSQL'' in 1998 to name his lightweight, [[Strozzi NoSQL (RDBMS)|open-source relational database]] that did not expose the standard SQL interface.<ref name=":0">{{cite web
+| url         = http://publications.lib.chalmers.se/records/fulltext/123839.pdf
+| title       = Investigating storage solutions for large data: A comparison of well performing and scalable data storage solutions for real time extraction and batch insertion of data
+| first       = Adam
+| last        = Lith
+|author2=Jakob Mattson
+ | year        = 2010
+| publisher   = Department of Computer Science and Engineering, Chalmers University of Technology
+| location    = Göteborg
+| page        = 70
+| format      = PDF
+| accessdate  = 12 May 2011
+| quote       = Carlo Strozzi first used the term NoSQL in 1998 as a name for his open source relational database that did not offer a SQL interface[...]
+}}
+</ref> Strozzi suggests that, as the current NoSQL movement "departs from the relational model altogether; it should therefore have been called more appropriately 'NoREL'",<ref>{{cite web|url=http://www.strozzi.it/cgi-bin/CSA/tw7/I/en_US/nosql/Home%20Page |title=NoSQL Relational Database Management System: Home Page |publisher=Strozzi.it |date=2 October 2007 |accessdate=29 March 2010}}</ref> referring to 'No Relational'.
+
+Eric Evans reintroduced the term ''NoSQL'' in early 2009 when Johan Oskarsson of [[Last.fm]] organized an event to discuss open-source [[distributed database]]s.<ref>{{cite web|url= http://blog.sym-link.com/2009/05/12/nosql_2009.html |title= NoSQL 2009 |publisher= Blog.sym-link.com |date= 12 May 2009 |accessdate= 29 March 2010 }}</ref> The name attempted to label the emergence of an increasing number of non-relational, distributed data stores. Most of the early NoSQL systems did not attempt to provide [[ACID|atomicity, consistency, isolation and durability]] guarantees, contrary to the prevailing practice among relational database systems.<ref>{{cite web|url= http://databases.about.com/od/specificproducts/a/acid.htm |title= The ACID Model|author= Mike Chapple }}</ref>
+
+== Types of NoSQL databases ==
+There have been various approaches to classify NoSQL databases, each with different categories and subcategories. Because of the variety of approaches and overlaps it is difficult to get and maintain an overview of non-relational databases. Nevertheless, a basic classification is based on data model. A few examples in each category are:
+* '''[[Column (data store)|Column]]''':  [[Accumulo]], [[Apache Cassandra|Cassandra]], [[Druid (open-source data store)|Druid]], [[HBase]], [[Vertica]]
+* '''[[Document-oriented database|Document]]''': [[Clusterpoint]], [[Apache CouchDB]], [[Couchbase]], [[MarkLogic]], [[MongoDB]]
+* '''[[Key-value store|Key-value]]''':  [[Dynamo (storage system)|Dynamo]], [[FoundationDB]], [[MemcacheDB]], [[Redis]], [[Riak]], FairCom [[c-treeACE]], [[Aerospike database|Aerospike]]
+* '''[[Graph database|Graph]]''':  [[AllegroGraph|Allegro]], [[Neo4J]], [[InfiniteGraph]], [[OrientDB]], [[Virtuoso Universal Server|Virtuoso]], [[Stardog]]
+
+A more detailed classification is the following, by Stephen Yen:<ref>{{cite web|url=https://dl.dropboxusercontent.com/u/2075876/nosql-steve-yen.pdf|format=PDF|title=NoSQL is a Horseless Carriage|last=Yen|first=Stephen|publisher=NorthScale|accessdate=2014-06-26}}.</ref>
+
+{| style="text-align: left;" class="wikitable sortable"
+|-
+! Term !! Matching Database
+|-
+| Key-Value Cache || [[Oracle Coherence|Coherence]], [[IBM WebSphere eXtreme Scale|eXtreme Scale]], [[GigaSpaces]],  GemFire, [[Hazelcast]], [[Infinispan]], JBoss Cache, [[Memcached]], Repcached, [[Terracotta, Inc.|Terracotta]], [[Velocity (memory cache)|Velocity]]
+|-
+| Key-Value Store || Flare, Keyspace, RAMCloud, SchemaFree, [[Hyperdex]]
+|-
+| Key-Value Store (Eventually-Consistent) || DovetailDB, [[Dynamo (storage system)|Dynamo]],  [[Riak]], Dynomite, MotionDb, [[Voldemort (distributed data store)|Voldemort]], SubRecord
+|-
+| Key-Value Store (Ordered) || Actord, [[FoundationDB]], Lightcloud, Luxio, [[MemcacheDB]],  NMDB, Scalaris, TokyoTyrant
+|-
+| Data-Structures server || [[Redis]]
+|-
+| Tuple Store || [[Jini|Apache River]], Coord, [[GigaSpaces]]
+|-
+| Object Database || DB4O, [[Perst]], Shoal, [[Zope Object Database|ZopeDB]], 
+|-
+| Document Store || [[Clusterpoint]], [[Couchbase]], [[CouchDB]], [[MarkLogic]], [[MongoDB]], [[XML database|XML-databases]]
+|-
+| Wide Columnar Store || [[BigTable]], [[Apache Cassandra|Cassandra]], [[Druid (open-source data store)|Druid]], [[Apache HBase|HBase]], [[Hypertable]], KAI, KDI, OpenNeptune, Qbase
+|}
+
+== Performance ==
+Ben Scofield rated different categories of NoSQL databases as follows: 
+<ref>{{cite web|url=http://www.slideshare.net/bscofield/nosql-codemash-2010|title=NoSQL - Death to Relational Databases(?)|last=Scofield|first=Ben |date=2010-01-14|accessdate=2014-06-26}}</ref>
+
+{| style="text-align: left;" class="wikitable sortable"
+|-
+! Data Model !! Performance !! Scalability !! Flexibility !! Complexity !! Functionality
+|-
+| Key–Value Store ||  high || high || high || none || variable (none)
+|-
+| Column-Oriented Store || high || high || moderate || low || minimal
+|-
+| Document-Oriented Store || high || variable (high) || high || low || variable (low)
+|-
+| Graph Database || variable || variable || high || high || [[graph theory]]
+|-
+| Relational Database || variable || variable || low || moderate || [[relational algebra]]
+|}
+
+{{see also|Comparison of structured storage software}}
+
+== Handling relational data ==
+Since most NoSQL databases lack ability for joins in queries, the database schema generally needs to be designed differently. There are three main techniques for handling relational data in a NoSQL database.
+
+=== Multiple Queries ===
+Instead of retrieving all the data with one query, it's common to do several queries to get the desired data. NoSQL queries are often faster than traditional SQL queries so the cost of having to do additional queries may be acceptable. If an excessive number of queries would be necessary, one of the other two approaches is more appropriate.
+
+=== Caching/Replication/Non-normalized Data ===
+Instead of only storing foreign keys, it's common to store actual foreign values along with the model's data. For example, each blog comment might include the username in addition to a user id, thus providing easy access to the username without requiring another lookup. When a username changes however, this will now need to be changed in many places in the database. Thus this approach works better when reads are much more common than writes. <ref name="DataModeling-Couchbase.com_December_5_2014c">{{cite web |url=http://www.couchbase.com/sites/default/files/uploads/all/whitepapers/Couchbase_Whitepaper_Transitioning_Relational_to_NoSQL.pdf |title=Making the Shift from Relational to NoSQL
+ |newspaper=Couchbase.com |accessdate= December 5, 2014}}</ref>
+
+=== Nesting Data ===
+With document databases like MongoDB it's common to put more data in a fewer number of collections. For example in a blogging application, one might choose to store comments within the blog post document so that with a single retrieval one gets all the comments. Thus in this approach a single document contains all the data you need for a specific task.
+
+== Examples ==
+
+=== Document store ===
+{{main|Document-oriented database|XML database}}
+The central concept of a document store is the notion of a "document". While each document-oriented database implementation differs on the details of this definition, in general, they all assume that documents encapsulate and encode data (or information) in some standard formats or encodings. Encodings in use include XML, [[YAML]], and [[JSON]] as well as binary forms like [[BSON]].
+
+Different implementations offer different ways of organizing and/or grouping documents:
+* Collections
+* Tags
+* Non-visible Metadata
+* Directory hierarchies
+
+Compared to relational databases, for example, collections could be considered analogous to tables and documents  analogous to records. But they are different: every record in a table has the same sequence of fields, while documents in a collection may have fields that are completely different.
+
+Documents are addressed in the database via a unique ''key'' that represents that document. One of the other defining characteristics of a document-oriented database is that, beyond using the simple key-document (or key-value) lookup to retrieve a document, the database offers an API or query language that retrieves documents based on their contents.
+
+; Document store databases and their query language
+{| style="text-align: left;" class="wikitable sortable"
+|-
+! Name !! Language !! Notes
+|-
+| [[BaseX]] || [[Java (programming language)|Java]], [[XQuery]] || [[XML database]]
+|-
+| [[Cloudant]] || [[C (programming language)|C]], [[Erlang (programming language)|Erlang]], [[Java (programming language)|Java]], [[Scala (programming language)|Scala]] || [[JSON]] store (online service)
+|-
+| [[Clusterpoint]] || [[C (programming language)|C]], [[C++]], [[REST]], [[XML]], [[full text search]] || XML database with support for [[JSON]], text, binaries
+|-
+| [[Couchbase Server]] || [[C (programming language)|C]], [[C++]], [[Erlang (programming language)|Erlang]] || Support for [[JSON]] and binary documents
+|-
+| [[CouchDB|Apache CouchDB]] || [[Erlang (programming language)|Erlang]] || [[JSON]] database
+|-
+| [[Solr]] || [[Java (programming language)|Java]] || Search engine
+|-
+| [[ElasticSearch]] || [[Java (programming language)|Java]] || [[JSON]], Search engine
+|-
+| [[eXist]] || [[Java (programming language)|Java]], [[XQuery]] || [[XML database]]
+|-
+| [[Apache Jackrabbit|Jackrabbit]] || [[Java (programming language)|Java]] || [[Java Content Repository]] implementation
+|-
+| [[IBM Notes]] and [[IBM Lotus Domino|IBM Domino]] || [[LotusScript]], [[Java (programming language)|Java]], IBM X Pages, others || [[MultiValue]]
+|-
+| [[MarkLogic Server]] || [[Java]], [[REST]], [[XQuery]] || [[XML database]] with support for [[JSON]], text, and binaries
+|-
+| [[MongoDB]] || [[C++]], [[C Sharp (programming language)|C#]], [[Go (Programming language)|Go]] || [[BSON]] store (binary format [[JSON]])
+|-
+| [[ObjectDatabase++]] || [[C++]], [[C Sharp (programming language)|C#]], [[TScript]] || Binary Native C++ class structures
+|-
+| [[Oracle NoSQL Database]] || [[C (programming language)|C]], [[Java (programming language)|Java]] ||
+|-
+| [[OrientDB]] || [[Java (programming language)|Java]] || [[JSON]], SQL support
+|-
+| [[CoreFoundation]] [[Property list]] || [[C (programming language)|C]], [[C++]], [[Objective-C]] || [[JSON]], [[XML]], binary
+|-
+| [[Sedna (database)|Sedna]] || [[C++]], [[XQuery]] || [[XML database]]
+|-
+| [[SimpleDB]] || [[Erlang (programming language)|Erlang]] || online service
+|-
+| [[TokuMX]] || [[C++]], [[C Sharp (programming language)|C#]], [[Go (Programming language)|Go]] || [[MongoDB]] with [[Fractal tree index|Fractal Tree indexing]]
+|-
+| [[Virtuoso Universal Server|OpenLink Virtuoso]] || [[C++]], [[C Sharp (programming language)|C#]], [[Java (programming language)|Java]], [[SPARQL]] || [[middleware]] and [[database engine]] hybrid
+|}
+
+=== Graph ===
+{{main|Graph database}}
+
+This kind of database is designed for data whose relations are well represented as a graph (elements interconnected with an undetermined number of relations between them). The kind of data could be social relations, public transport links, road maps or network topologies, for example.
+
+; Graph databases and their query language
+{| style="text-align: left;" class="wikitable sortable"
+ ! Name !! Language(s) !! Notes
+ |-
+ | [[AllegroGraph]] || [[SPARQL]] || [[Resource Description Framework|RDF]] GraphStore
+ |-
+ | [[DEX (Graph database)|DEX/Sparksee]] || [[C++]], [[Java (programming language)|Java]], [[.NET Framework|.NET]], [[Python (programming language)|Python]] || High-performance [[graph database]]
+ |-
+ | [[FlockDB]] || [[Scala (programming language)|Scala]] ||
+ |-
+ | [[IBM DB2]] || [[SPARQL]] || [[Resource Description Framework|RDF]] GraphStore added in DB2 10
+ |-
+ | [[InfiniteGraph]] || [[Java (programming language)|Java]] || High-performance, scalable, distributed [[graph database]]
+ |-
+ | [[Neo4j]] || [[Java (programming language)|Java]] ||
+ |-
+ | [[Ontotext|OWLIM]] || [[Java (programming language)|Java]], [[SPARQL|SPARQL 1.1]]|| [[Resource Description Framework|RDF]] graph store with reasoning
+ |-
+ | [[OrientDB]] || [[Java (programming language)|Java]] ||
+ |-
+ | [[Sones GraphDB]] || [[C Sharp (programming language)|C#]] || Graph database with query language called ''GraphQL''|
+ |-
+ | [[sqrrl|Sqrrl Enterprise]] || [[Java (programming language)|Java]] || Distributed, real-time graph database featuring cell-level security
+ |-
+ | [[Virtuoso Universal Server|OpenLink Virtuoso]] ||  [[C++]], [[C Sharp (programming language)|C#]], [[Java (programming language)|Java]], [[SPARQL]] || [[middleware]] and [[database engine]] hybrid
+ |-
+ | [[Stardog]] || [[Java (programming language)|Java]], [[SPARQL]] || [[Semantic Web|semantic]] [[graph database]]
+|}
+
+=== Key-value stores ===
+Key-value (KV) stores use the [[associative array]] (also known as a map or dictionary) as their fundamental data model. In this model, data is represented as a collection of key-value pairs, such that each possible key appears at most once in the collection.<ref>{{cite web
+| accessdate =1 January 2012
+| publisher = Stackexchange
+| location = http://dba.stackexchange.com/questions/607/what-is-a-key-value-store-database
+| title = Key Value stores and the NoSQL movement
+| author = Sandy
+| date = 14 January 2011
+| url = http://dba.stackexchange.com/a/619
+| quote = Key-value stores allow the application developer to store schema-less data. This data usually consists of a string that represents the key, and the actual data that is considered the value in the "key-value" relationship. The data itself is usually some kind of primitive of the programming language (a string, an integer, or an array) or an object that is being marshaled by the programming language's bindings to the key-value store. This structure replaces the need for a fixed data model and allows proper formatting.}}</ref><ref>{{cite web
+| accessdate =1 January 2012
+| publisher = Marc Seeger
+| location = http://blog.marc-seeger.de/2009/09/21/key-value-stores-a-practical-overview/
+| title = Key-Value Stores: a practical overview
+| author = Marc Seeger
+| date = 21 September 2009
+| url = http://blog.marc-seeger.de/assets/papers/Ultra_Large_Sites_SS09-Seeger_Key_Value_Stores.pdf
+| quote = Key-value stores provide a high-performance alternative to relational database systems with respect to storing and accessing data. This paper provides a short overview of some of the currently available key-value stores and their interface to the Ruby programming language.}}</ref>
+
+The key-value model is one of the simplest non-trivial data models, and richer data models are often implemented on top of it. The key-value model can be extended to an ''ordered'' model that maintains keys in [[Lexicographical order|lexicographic order]]. This extension is powerful, in that it can efficiently process key ''ranges''.<ref>{{cite web
+| accessdate =8 May 2014
+| publisher = Ilya Katsov
+| title = NoSQL Data Modeling Techniques 
+| author = Ilya Katsov
+| date = 1 March 2012
+| url = http://highlyscalable.wordpress.com/2012/03/01/nosql-data-modeling-techniques/}}</ref>
+
+Key-value stores can use [[consistency model]]s ranging from [[eventual consistency]] to [[serializability]]. Some support ordering of keys. Some maintain data in memory (RAM), while others employ [[solid-state drive]]s or [[hard disk drive|rotating disks]]. Here is a list of key-value stores:
+
+==== KV - eventually consistent ====
+
+* [[Dynamo (storage system)|Dynamo]]
+* [[Riak]]<ref>{{cite web | url = https://wiki.basho.com | title = Riak: An Open Source Scalable Data Store | date = 28 November 2010 | accessdate =28 November 2010 * [[Virtuoso Universal Server|OpenLink Virtuoso]]
+* [[Project Voldemort]]
+}}</ref>
+
+==== KV - ordered ====
+* [[Berkeley DB]]
+* FairCom [[c-treeACE]]/c-treeRTG
+* [[FoundationDB]]
+* [[IBM Informix C-ISAM]]
+* [[InfinityDB]]
+* [[Lightning Memory-Mapped Database|LMDB]]
+* [[MemcacheDB]]
+* [[NDBM]]
+
+==== KV - RAM ====
+* [[Oracle Coherence|Coherence]]
+* FairCom [[c-treeACE]]
+* [[Hazelcast]]
+* [[memcached]]
+* [[Virtuoso Universal Server|OpenLink Virtuoso]]
+* [[redis]]
+* [[GigaSpaces#XAP|XAP]]
+
+==== KV - solid-state drive or rotating disk ====
+* [[Aerospike database|Aerospike]]
+* [[BigTable]]
+* [[Cdb (software)|CDB]]
+* [[Clusterpoint|Clusterpoint XML database]]
+* [[Oracle Coherence|Coherence]]
+* [[Couchbase Server]]
+* FairCom [[c-treeACE]]
+* [[GT.M]]<ref>{{cite web
+| url         = http://www.mgateway.com/docs/universalNoSQL.pdf
+| title       = A Universal NoSQL Engine, Using a Tried and Tested Technology
+| first       = Rob
+| last        = Tweed
+| author2     = George James
+| year        = 2010
+| page        = 25
+| format      = PDF
+| quote       = Without exception, the most successful and well-known of the NoSQL databases have
+been developed from scratch, all within just the last few years. Strangely, it seems
+that nobody looked around to see whether there were any existing, successfully implemented
+database technologies that could have provided a sound foundation for
+meeting Web-scale demands. Had they done so, they might have discovered two
+products, GT.M and Caché.....*
+}}</ref>
+* [[Hibari (database)|Hibari]]
+* [[Keyspace (distributed data store)|Keyspace]]
+* [[LevelDB]]
+* [[Lightning Memory-Mapped Database|LMDB]]
+* [[MemcacheDB]] (using Berkeley DB)
+* [[MongoDB]]
+* [[Virtuoso Universal Server|OpenLink Virtuoso]]
+* [[Oracle NoSQL Database]]
+* [[Tarantool]]
+* [[Tokyo Cabinet]]
+* [[Tuple space]]
+
+=== Object database ===
+{{main|Object database}}
+* [[db4o]]
+* [[Gemstone (database)|GemStone/S]]
+* [[InterSystems Caché]]
+* [[JADE (programming language)|JADE]]
+* [[NeoDatis ODB]]
+* [[ObjectDatabase++]]
+* [[ObjectDB]]
+* [[Objectivity/DB]]
+* [[ObjectStore]]
+* [[Odaba|ODABA]]
+* [[Perst]]
+* [[Virtuoso Universal Server|OpenLink Virtuoso]]
+* [[Versant Object Database]]
+* [[ZODB]]
+
+=== Tabular ===
+* [[Apache Accumulo]]
+* [[BigTable]]
+* [[HBase|Apache Hbase]]
+* [[Hypertable]]
+* [[Mnesia]]
+* [[Virtuoso Universal Server|OpenLink Virtuoso]]
+
+=== Tuple store ===
+* [[Apache River]]
+* [[GigaSpaces]]
+* [[Tarantool]]
+* [[TIBCO Software|TIBCO]] ActiveSpaces
+* [[Virtuoso Universal Server|OpenLink Virtuoso]]
+
+=== Triple/quad store (RDF) database ===
+* [[Jena (framework)|Apache JENA]]
+* [[MarkLogic]]
+* [[Ontotext|Ontotext-OWLIM]]
+* [[Oracle NoSQL Database|Oracle NoSQL database]]
+* [[SparkleDB]]
+* [[Virtuoso Universal Server]]
+* [[Stardog]]
+
+=== Hosted ===
+* [[Amazon DynamoDB]]
+* [[Cloudant|Cloudant Data Layer (CouchDB)]]
+* [[Appengine|Datastore on Google Appengine]]
+* [[Freebase (database)|Freebase]]
+* [[Virtuoso Universal Server|OpenLink Virtuoso]]
+
+=== Multivalue databases ===
+* D3 [[Pick database]]
+* [[Extensible Storage Engine]] (ESE/NT)
+* [[InfinityDB]]
+* [[InterSystems Caché]]
+* [[Northgate Information Solutions]] Reality, the original Pick/MV Database
+* [[OpenQM]]
+* Revelation Software's [[OpenInsight]]
+* [[Rocket U2]]
+
+=== Cell database ===
+{{Empty section|date=April 2014|section=20}}
+
+== See also ==
+<!-- please do not list specific implementations here -->
+* [[CAP theorem]]
+* [[Comparison of object database management systems]]
+* [[Comparison of structured storage software]]
+* [[Faceted search]]
+* [[Triplestore]]
+* [[Distributed cache]]
+
+== References ==
+{{Reflist|33em}}
+
+== Further reading ==
+*{{cite book
+ | author = Pramod Sadalage and [[Martin Fowler]]
+ | year = 2012
+ | title = NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence
+ | publisher = Addison-Wesley
+ | isbn = 0-321-82662-0
+}}
+*{{cite book
+ | author = Dan McCreary & Ann Kelly
+ | year = 2013
+ | title = Making Sense of NoSQL: A guide for managers and the rest of us
+ | isbn = 9781617291074
+}}
+* {{cite web|author=Christof Strauch|year=2012|title=NoSQL Databases|url=http://www.christof-strauch.de/nosqldbs.pdf}}
+* {{cite web|author=Moniruzzaman AB,  Hossain SA|year=2013|title=NoSQL Database: New Era of Databases for Big data Analytics - Classification, Characteristics and Comparison|url=http://arxiv.org/abs/1307.0191}}
+* {{cite journal|author=Kai Orend|year=2013|title=Analysis and Classification of NoSQL Databases and Evaluation of their Ability to Replace an Object-relational Persistence Layer|url=http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.184.483&rep=rep1&type=pdf}}
+* {{cite web|author=Ganesh Krishnan, Sarang Kulkarni, Dharmesh Kirit Dadbhawala|title=Method and system for versioned sharing, consolidating and reporting information|url=https://www.google.com/patents/US7383272?pg=PA1&dq=ganesh+krishnan&hl=en&sa=X}}
+* {{cite web|author=Sugam Sharma|title=A Brief Review on Modern NoSQL Data Models, Handling Big Data|url=http://www.cs.iastate.edu/~sugamsha/articles}}
+
+== External links ==
+* {{cite web|url=http://www.christof-strauch.de/nosqldbs.pdf|title=NoSQL whitepaper|author=Christoph Strauch|publisher=Hochschule der Medien, Stuttgart}}
+* {{cite web|url=http://nosql-database.org/|title=NoSQL database List|author=Stefan Edlich}}
+* {{cite web|year=2010|url=http://www.infoq.com/articles/graph-nosql-neo4j|title=Graph Databases, NOSQL and Neo4j|author=Peter Neubauer}}
+* {{cite web|year=2012|url=http://www.networkworld.com/news/tech/2012/102212-nosql-263595.html|title=A vendor-independent comparison of NoSQL databases: Cassandra, HBase, MongoDB, Riak|author=Sergey Bushik|publisher=NetworkWorld}}
+
+{{Use dmy dates|date=February 2012}}
+{{Databases}}
+
+{{DEFAULTSORT:Nosql}}
+[[Category:Data management]]
+[[Category:Distributed data stores]]
+[[Category:NoSQL| ]]
+      

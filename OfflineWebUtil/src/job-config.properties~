@@ -1,0 +1,36 @@
+#base directory for all data
+offline.job.basedir=/media/papa2/great/workspace/DataPort/OfflineWebData
+
+#directory for all logs
+offline.job.logdir=/media/papa2/great/workspace/DataPort/OfflineWebData/logs
+
+#the directory to find all the name-to-id mapping files
+offline.job.mapperdir=/media/papa2/great/workspace/OfflineWebData/wikidump/contentid
+
+#root directory to store all the pages
+offline.job.pagedir=/media/papa2/great/workspace/DataPort/OfflineWebData/wikidump/pages
+
+#root dir for storing images
+offline.job.imagedir=/media/papa2/great/workspace/DataPort/OfflineWebData/wikidump/images
+
+#directory for all background
+offline.job.datadir=/media/papa2/great/workspace/DataPort/OfflineWebData/data
+
+#if necessary, individual mappers
+#offline.job.mappers=T;L;B;S
+
+#odd or even numbered name to id files, this is added as a convenience to run on both the machine
+offline.job.batcher.type=unavailable
+
+#maximum number of parallel jobs/threads to run
+offline.job.batcher.maxjob=10
+
+#maximum wait time in seconds for each batch to execute befor forced termination
+offline.job.batcher.waittime=200
+
+#if to add more wait time to free resources after a batch of job execution (yes/true or no/false)
+offline.job.batcher.towait=no
+
+#if to add more wait, the how many milliseconds - MUST be millisecods
+offline.job,batcher.addwiat=500
+
