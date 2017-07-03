@@ -1,0 +1,39 @@
+
+<?php include 'searchbar.phtml' ?>
+<!-- /Search bar -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <img width="40px" height="40px" style="padding: 4px" src="<?php echo $this->baseUrl(); ?>/images/gutenberg-icon.png"/>
+                        &nbsp;<?php echo $this->title; ?>
+                        <?php if ($this->epubURL !== NULL || $this->epubURL !== "") : ?>
+                        &nbsp;<a style="padding: 4px" alt="Download eBook" href="<?php echo $this->epubURL; ?>">
+                            <img alt="Download eBook"  width="40px" height="40px" style="padding: 4px" src="<?php echo $this->baseUrl(); ?>/images/downloads-icon.png"/>
+                        </a>
+                        <?php endif;?>
+                    </div>
+                    
+                </div>
+                <div class="panel-body">
+                    <?php if ($this->gutenContent === NULL || $this->gutenContent === "") : ?>
+                        <h3>Something went wrong!</h3>
+                    <?php else :?>
+                        <?php echo $this->gutenContent; ?>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div> 
+        
+        <div class="col-xs-2">
+            <div class="well well-sm">Related pages</div>
+            <input type="hidden" name="title" id="hid-title" value="<?php echo $this->title; ?>"/>
+            <div class="list-group" id="more-ajax-cont">
+                <!-- placeholder -->
+            </div>
+        </div>
+    </div>
+</div>

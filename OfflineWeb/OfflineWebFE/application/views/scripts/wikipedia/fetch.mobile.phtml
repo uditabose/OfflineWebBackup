@@ -1,0 +1,35 @@
+<?php include 'searchbar.mobile.phtml' ?>
+<!-- /Search bar -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <img width="40px" height="40px" style="padding: 4px" src="<?php echo $this->baseUrl(); ?>/images/wiki-icon.png"/>
+                        &nbsp;<?php echo $this->title; ?>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <?php if ($this->wikiContent === NULL || $this->wikiContent === "") : ?>
+                        <h3>Something went wrong!</h3>
+                    <?php else :?>
+                        <?php echo $this->wikiContent; ?>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="well well-sm">Related pages</div>
+            <input type="hidden" name="title" id="hid-title" value="<?php echo $this->title; ?>"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-xs-12" id="more-ajax-cont">
+            <!-- placeholder -->
+        </div> 
+    </div> <!--
+</div>

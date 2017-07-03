@@ -1,0 +1,172 @@
+
+<?php include 'searchbar.phtml' ?>
+<!-- /Search bar -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="well well-sm">
+                About <span class="label label-default"><?php echo $this->searchResult->getTotalResults(); ?></span> 
+                search results for <span class="label label-default"><?php echo $this->title; ?></span>
+            </div>
+        </div>
+    </div>
+</div> <!-- /Search details-->
+
+<!-- Tab navigation -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+            <ul class="nav nav-tabs">
+                <?php if (strtolower($this->searchType) === "all") { ?>
+                 <li class="active">
+                <?php } else { ?>
+                 <li>
+                <?php } ?>
+                    <a href="/search?q=<?php echo urlencode($this->title); ?>"><span class="glyphicon glyphicon-globe"></span> &nbsp; All</a>
+                </li>
+                
+                <li>
+                <?php if (strtolower($this->searchType) === "article") { ?>
+                <li class="active">
+                <?php } else { ?>
+                <li>
+                <?php } ?>
+                  <a href="/search?q=<?php echo urlencode($this->title); ?>&t=article"><span class="glyphicon glyphicon-file"></span> &nbsp;Articles</a>
+                </li>
+                
+                <?php if (strtolower($this->searchType) === "book") { ?>
+                <li class="active">
+                <?php } else { ?>
+                <li>
+                <?php } ?>
+                    <a href="/search?q=<?php echo urlencode($this->title); ?>&t=book"><span class="glyphicon glyphicon-book"></span> &nbsp;Books</a>
+                </li>
+                
+                <?php if (strtolower($this->searchType) === "video") { ?>
+                <li class="active">
+                <?php } else { ?>
+                <li>
+                <?php } ?>
+                    <a href="/search?q=<?php echo urlencode($this->title); ?>&t=video"><span class="glyphicon glyphicon-film"></span> &nbsp;Videos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /Tab navigation -->
+<?php if ($this->searchResult->getSerachResult()) : ?>
+    <?php for ($i = 0; $i < count($this->searchResult->getSerachResult()); $i++) {
+            $result = $this->searchResult->getSerachResult()[$i]; ?>
+    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="/search/<?php echo $result->getSource(); ?>?t=<?php echo urlencode($result->getTitle()); ?>&k=<?php echo urlencode($result->getDocId()); ?>">
+                                <div class="panel-title">
+                                    <img width="40px" height="40px" style="padding: 4px" src="<?php echo $this->baseUrl(); ?>/images/<?php echo $result->getSource(); ?>-icon.png"/>
+                                    <?php echo $result->getTitle(); ?>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel-body">
+                            <?php if ($result->hasThumbnail()) : ?>
+                            <div class="col-sm-2 col-xs-2 thumbnail">
+                                <img class="img-thumbnail" src="<?php echo $result->getThumbnailURL(); ?>"/>
+                            </div>
+                            <?php endif; ?>
+                            <div class="col-sm-8 col-xs-8">
+                               <?php echo $result->getDocAbstarct(); ?>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <small class="text-muted">#<?php echo $result->getType(); ?></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /search list container -->
+        
+    <?php }; ?>
+<?php else : ?>
+    <h3 class="danger">No Result</h3>
+<?php endif; ?>
+
+<!-- pagination -->    
+<?php if ($this->searchResult->getSerachResult() && $this->searchResult->getTotalResults() > 10) : 
+    $maxPage = $this->searchResult->getTotalResults() / 10;
+    $curPage = $this->searchResult->getCurrentPage();
+    $startPage = 1;
+
+    if ($curPage >= 10) {
+        $startPage = $curPage - 5;
+    }
+
+    $prvPage = $curPage;
+    if ($prvPage === 1) {
+        $prvPage = 0;
+    } else {
+        $prvPage--;
+    }
+
+    $nextPage = $curPage;
+    if ($nextPage === $maxPage) {
+        $nextPage = 0;
+    } else {
+        $nextPage++;
+    }
+    
+    $sType = strtolower($this->searchType);
+    if ($sType === "all") {
+        $sType = "";
+    }
+?>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 col-sm-offset-1">
+                <nav>
+                    <ul class="pagination">
+                    <!-- Previous page link  -->
+                    <?php if ($prvPage === 0) { ?>
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <?php } else { ?>
+                    <li>
+                        <a aria-label="Previous" href="/search?t=<?php echo $sType;?>&pn=<?php echo $prvPage; ?>&q=<?php echo urlencode($this->title); ?>">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    
+                    <!-- Rest of the pages link -->
+                    
+                    <?php for ($i = $startPage; ($i <= $maxPage && $i < $startPage + 10); $i++) { ?>
+                        <?php if ($i === $curPage) { ?>
+                        <li class="active">
+                        <?php } else { ?>
+                        <li>
+                        <?php } ?>
+                            <a href="/search?t=<?php echo $sType;?>&pn=<?php echo $i; ?>&q=<?php echo urlencode($this->title); ?>"><?php echo $i; ?></a></li>
+                    <?php } ?>
+                    
+                    <!-- /Rest of the pages link -->
+                    
+                    <!-- Next page link -->
+                    <?php if ($nextPage === 0) { ?>
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <?php } else { ?>
+                    <li>
+                        <a href="/search?t=<?php echo $sType;?>&pn=<?php echo $nextPage; ?>&q=<?php echo urlencode($this->title); ?>">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<!-- /pagination -->

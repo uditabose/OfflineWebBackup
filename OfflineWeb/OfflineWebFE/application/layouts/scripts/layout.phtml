@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Offline</title>
+        
+        <!-- viewport to fit in device -->
+        <meta name="viewport" content="width=device-width, initial-scale=1 , maximum-scale=1.0">
+        
+        <!-- UTF character encoding -->
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        
+        <!-- Wikipedia styles : MUST go before bootstrap themes-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/wikipedia-common.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->baseUrl(); ?>/css/wikipedia-page.css" rel="stylesheet" type="text/css" />
+        
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/css/bootstrap.css">
+        
+        <!-- optional theme -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl(); ?>/css/bootstrap-theme.css">
+
+        <!-- offline custom css -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl(); ?>/css/offline.css">
+        
+        <!-- base url -->
+        <script type="text/javascript">
+            var BASE_URL = '<?php echo htmlspecialchars($this->serverUrl() . $this->baseUrl(), ENT_QUOTES); ?>';
+        </script>
+    </head>
+    <body>
+        <header class="navbar">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <!-- Brand  -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="<?php echo $this->serverUrl(); ?>">
+                            <span class="glyphicon glyphicon-home" style="padding: 4px"></span>Offline
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header><!-- /.end of top nav bar -->
+
+        <!-- Main component for a primary marketing message or call to action -->
+            <?php echo $this->layout()->content; ?>
+        <!-- /Main component  -->
+        
+        <!-- JQuery -->
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.js"></script>
+        <!-- bootstrap js -->
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/bootstrap.js"></script>
+        <!-- Auto-complete -->
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/typeahead.bundle.js"></script>
+        <!-- app related -->
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/offline.js"></script>
+    </body>
+</html>

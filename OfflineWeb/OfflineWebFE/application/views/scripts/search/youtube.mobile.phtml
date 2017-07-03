@@ -1,0 +1,40 @@
+
+<?php include 'searchbar.mobile.phtml' ?>
+<!-- /Search bar -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="well well-lg">
+                <img width="40px" height="40px" style="padding: 4px" src="<?php echo $this->baseUrl(); ?>/images/youtube-icon.png"/>
+                <b style="font-size:16px"><?php echo $this->title; ?></b>
+            </div>
+        </div>
+    </div> <!-- /title -->
+    <div class="row">
+        <div class="col-xs-12">
+            <?php if ($this->youtubeContent === NULL || $this->youtubeContent === "") : ?>
+            <h3>Something went wrong!</h3>
+            <?php else :?>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe allowfullscreen class="embed-responsive-item" src="<?php echo $this->youtubeContent; ?>"></iframe>
+                </div>
+            <?php endif;?>
+        </div>
+    </div>  <!-- /content -->
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="well well-sm">Related pages</div>
+            <input type="hidden" name="title" id="hid-title" value="<?php echo $this->title; ?>"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" id="more-ajax-cont">
+            <!-- placeholder -->
+        </div> 
+    </div> <!-- /related links -->
+    
+</div>
+
+

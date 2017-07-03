@@ -1,0 +1,166 @@
+/* 
+    Created on : May 22, 2015, 10:33:42 PM
+    Author     : papa2
+*/
+/* Don't display some stuff on the main page */
+body.page-Main_Page #deleteconfirm,
+body.page-Main_Page #t-cite,
+body.page-Main_Page #lastmod,
+body.action-view.page-Main_Page #siteSub,
+body.action-view.page-Main_Page #contentSub,
+body.action-view.page-Main_Page h1.firstHeading {
+    display: none !important;
+}
+ 
+#siteNotice {
+    margin-top: 5px;
+    margin-bottom: -.5em;
+}
+#mw-dismissable-notice {
+    background: transparent;
+}
+ 
+/* BEGIN LIGHT BLUE SECTION
+   Make content area light blue in all namespaces except articles (main namespace). 
+   This is done by setting the background color for all #content areas 
+   to light blue, and then overriding it back to white for any #content 
+   enclosed in a .ns-0 (main namespace). We do the same for the "tab" 
+   backgrounds and some other objects. */
+ 
+div#content,
+div#p-cactions li a:hover,
+div#p-cactions li.selected a,
+div#content div.thumb {          /* "Margin" for thumbs, padding for galleries */
+    background-color: #F8FCFF;   /* Light blue */
+}
+div#p-cactions li a {
+    background-color: #F7F9FB;   /* Light blue-gray inactive tabs */
+}
+ 
+.ns-0 div#content,
+.ns-0 div#p-cactions li a:hover, .ns-0 div#p-cactions li.selected a, 
+.ns-0 div#content div.thumb {
+    background-color: white;     /* Set back to white for articles */
+}
+.ns-0 div#p-cactions li a {
+    background-color: #FBFBFB;   /* Light gray inactive tabs in articles */
+}
+ 
+@media print {
+    div#content {
+        background: white;
+    } /* White background on print */
+}
+ 
+/* Category lists and diffs transparent instead of white. */
+#mw-subcategories table,
+#mw-pages table,
+table.diff,
+td.diff-otitle,
+td.diff-ntitle {
+    background-color: transparent;
+}
+ 
+/* END LIGHT BLUE SECTION */
+ 
+/* Talk page tab "+" / "new section". 
+   Sets the same padding as the other tabs have. */
+div#p-cactions #ca-addsection a {
+    padding-left: .8em;
+    padding-right: .8em;
+}
+ 
+/* Block quotations */
+div#content blockquote {
+    font-size: 93.75%;  /* equivalent of 15px in 16px default */
+    margin: 1em 1.6em;  /* same indent as an unordered list */
+}
+div#content blockquote p {
+    line-height: inherit;
+}
+ 
+/* Display "From Wikipedia, the free encyclopedia" */
+#siteSub {
+    display: block;
+    font-size: 92%;
+}
+ 
+div#footer #lastmod,
+div#footer #copyright {
+    display: block;
+}
+ 
+/* Bold 'edit this page' link to encourage newcomers */
+#ca-edit a {
+    font-weight: bold !important;
+}
+ 
+#pt-login {
+    font-weight: bold;
+    font-size: 110%;
+}
+ 
+p.error {
+    font-weight: bold;
+}
+ 
+/* TOC margin in articles (and article previews) */
+.ns-0 #wikiPreview > table#toc,
+.ns-0 #bodyContent > table#toc {
+    margin-top: .5em;
+}
+ 
+/* Class styles */
+ 
+/* .toccolours added here because version in 
+   monobook/main.css wasn't being used by the print style */
+.toccolours { 
+    border: 1px solid #aaa;
+    background-color: #f9f9f9;
+    padding: 5px;
+    font-size: 95%;
+}
+ 
+/* Don't underline links in portlets/specialchars even with pref "Underline links:Always" */
+.portlet a,
+#editpage-specialchars a {
+    text-decoration: none;
+}
+.portlet a:hover,
+#editpage-specialchars a:hover {
+    text-decoration: underline;
+}
+ 
+/* Position coordinates */
+#coordinates {  
+    position: absolute;
+    z-index: 1;
+    border: none;
+    background: none;
+    right: 0;
+    top: 3.7em;
+    float: right;
+    margin: 0em;
+    padding: 0em;
+    padding-right: 30px;
+    line-height: 1.5em;
+    text-align: right;
+    text-indent: 0;
+    font-size: 85%;
+    text-transform: none;
+    white-space: nowrap;
+}
+ 
+/* FR topicon position */
+div.flaggedrevs_short {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    right: 110px;
+}
+ 
+/* Styling for updated markers on watchlist, history and recent/related changes */
+li.mw-changeslist-line-watched,
+li.mw-history-line-updated {
+    list-style-image: url(//upload.wikimedia.org/wikipedia/commons/f/fa/ChangedBulletMono.png);
+}
